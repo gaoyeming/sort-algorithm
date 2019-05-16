@@ -12,8 +12,31 @@ import java.util.Arrays;
 public class MainTest {
 
     public static void main(String[] args) {
-        int[] array = {3, 9, 6, 4, 2, 11, 34, 22, 1, 0, 1, 9, 4, 12, 12};
-        System.out.println("冒泡排序结果：" + Arrays.toString(SortAlgorithm.bubbleSort(array)));
-        System.out.println("选择排序结果：" + Arrays.toString(SortAlgorithm.selectionSort(array)));
+        long startTime = System.nanoTime();
+        int[] array = {34, 3, 9, 6, 4, 2, 11, 22, 1, 0, 1, 9, 4, 12, 12,34, 103, 9, 6, 4, 0, 11, 22, 1, 0, 1, 9, 4, 12, 12};
+        System.out.print("冒泡排序结果：" + Arrays.toString(SortAlgorithm.bubbleSort(array)));
+        long endTimeBubble = System.nanoTime();
+        System.out.println(";耗时："+(endTimeBubble-startTime));
+
+        array = new int[]{34, 3, 9, 6, 4, 2, 11, 22, 1, 0, 1, 9, 4, 12, 12, 34, 103, 9, 6, 4, 0, 11, 22, 1, 0, 1, 9, 4, 12, 12};
+        System.out.print("选择排序结果：" + Arrays.toString(SortAlgorithm.selectionSort(array)));
+        long endTimeSelection = System.nanoTime();
+        System.out.println(";耗时："+(endTimeSelection-endTimeBubble));
+
+        array = new int[]{34, 3, 9, 6, 4, 2, 11, 22, 1, 0, 1, 9, 4, 12, 12, 34, 103, 9, 6, 4, 0, 11, 22, 1, 0, 1, 9, 4, 12, 12};
+        System.out.print("插入排序结果：" + Arrays.toString(SortAlgorithm.insertionSort(array)));
+        long endTimeInsertion = System.nanoTime();
+        System.out.println(";耗时："+(endTimeInsertion-endTimeSelection));
+
+        array = new int[]{34, 3, 9, 6, 4, 2, 11, 22, 1, 0, 1, 9, 4, 12, 12, 34, 103, 9, 6, 4, 0, 11, 22, 1, 0, 1, 9, 4, 12, 12};
+        System.out.print("希尔排序结果：" + Arrays.toString(SortAlgorithm.shellSort(array)));
+        long endTimeShell = System.nanoTime();
+        System.out.println(";耗时："+(endTimeShell-endTimeInsertion));
+
+        array = new int[]{34, 3, 9, 6, 4, 2, 11, 22, 1, 0, 1, 9, 4, 12, 12, 34, 103, 9, 6, 4, 0, 11, 22, 1, 0, 1, 9, 4, 12, 12};
+        System.out.print("希尔排序结果：" + Arrays.toString(SortAlgorithm.mergeSort(array)));
+        long endTimeMerge = System.nanoTime();
+        System.out.println(";耗时："+(endTimeMerge-endTimeShell));
+
     }
 }
