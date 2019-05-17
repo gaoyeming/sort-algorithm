@@ -28,6 +28,8 @@ public class SortAlgorithm {
         return array;
     }
 
+    /**********************************************************************************************************/
+
     /**
      * 选择排序
      *
@@ -49,6 +51,8 @@ public class SortAlgorithm {
         return array;
     }
 
+    /**********************************************************************************************************/
+
     /**
      * 插入排序
      *
@@ -59,7 +63,7 @@ public class SortAlgorithm {
         for (int i = 1; i < array.length; i++) {
             int current = array[i];
             int preIndex = i - 1;
-            while (preIndex >= 0 && current < array[preIndex] ) {
+            while (preIndex >= 0 && current < array[preIndex]) {
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;
             }
@@ -68,6 +72,8 @@ public class SortAlgorithm {
 
         return array;
     }
+
+    /**********************************************************************************************************/
 
     /**
      * 希尔排序
@@ -82,7 +88,7 @@ public class SortAlgorithm {
             for (int i = gap; i < length; i++) {
                 int current = array[i];
                 int preIndex = i - gap;
-                while (preIndex >= 0 && current < array[preIndex] ) {
+                while (preIndex >= 0 && current < array[preIndex]) {
                     array[preIndex + gap] = array[preIndex];
                     preIndex -= gap;
                 }
@@ -92,6 +98,8 @@ public class SortAlgorithm {
         }
         return array;
     }
+
+    /**********************************************************************************************************/
 
     /**
      * 归并排序
@@ -131,6 +139,75 @@ public class SortAlgorithm {
         }
 
         return result;
+    }
+
+    /**********************************************************************************************************/
+
+    /**
+     * 快速排序
+     *
+     * @param array      需要排序的int数组
+     * @param startIndex 开始的索引位置
+     * @param endIndex   结束的索引位置
+     * @return 排序后的数组
+     */
+    public static int[] quickSort(int[] array, int startIndex, int endIndex) {
+        if (array.length < 1 || startIndex < 0 || endIndex >= array.length || startIndex > endIndex) {
+            return null;
+        }
+        int pivotIndex = partition(array, startIndex, endIndex);
+        if (pivotIndex > startIndex) {
+            quickSort(array, startIndex, pivotIndex - 1);
+        }
+        if (pivotIndex < endIndex) {
+            quickSort(array, pivotIndex + 1, endIndex);
+        }
+        return array;
+    }
+
+    /**
+     * 快速排序算法——partition
+     *
+     * @param array      分区的数组
+     * @param startIndex 开始的索引位置
+     * @param endIndex   结束的索引位置
+     * @return
+     */
+    private static int partition(int[] array, int startIndex, int endIndex) {
+        //随机获取一个基准（需要保证在数组内）
+        int pivotIndex = (int) (startIndex + Math.random() * (endIndex - startIndex + 1));
+        int i = startIndex;
+        while (i <= endIndex) {
+            if (i <= pivotIndex) {
+                if (array[i] > array[pivotIndex]) {
+                    swap(array, i, pivotIndex);
+                    pivotIndex = i;
+                }
+            } else {
+                if (array[i] < array[pivotIndex]) {
+                    swap(array, i, pivotIndex);
+                    int tmp = pivotIndex;
+                    pivotIndex = i;
+                    i = tmp;
+                }
+            }
+            i++;
+        }
+
+        return pivotIndex;
+    }
+
+    /**
+     * 交换数组内两个元素
+     *
+     * @param array 源元素数组
+     * @param i     交换位置i
+     * @param j     交换位置j
+     */
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
 
