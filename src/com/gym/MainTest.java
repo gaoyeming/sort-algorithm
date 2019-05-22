@@ -49,5 +49,17 @@ public class MainTest {
         long endTimeQuick = System.nanoTime();
         System.out.println(";耗时：" + (endTimeQuick - endTimeMerge));
 
+        array = new int[] { 8, 0,  2, 18, 1, 7,  5, 13, 25, 6, 9, 3, 10, 29, 21, 11, 17, 23, 12, 14, 15, 16, 19, 4,
+                20, 34, 22, 32, 24, 27, 28, 30, 33, 26,  31};
+        System.out.print("堆 排序结 果：" + Arrays.toString(SortAlgorithm.heapSort(array)));
+        long endTimeHeap = System.nanoTime();
+        System.out.println(";耗时：" + (endTimeHeap - endTimeQuick));
+
+        array = new int[] { 8, 0,  2, 18, 1, 7,  5, 13, 25, 6, 9, 3, 10, 29, 21, 11, 17, 23, 12, 14, 15, 16, 19, 4,
+                20, 34, 22, 32, 24, 27, 28, 30, 33, 26,  31};
+        System.out.print("计数排序结果：" + Arrays.toString(SortAlgorithm.countingSort(array)));
+        long endTimeCounting = System.nanoTime();
+        System.out.println(";耗时：" + (endTimeCounting - endTimeHeap));
+
     }
 }
