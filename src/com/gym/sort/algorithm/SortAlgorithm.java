@@ -1,6 +1,8 @@
 package com.gym.sort.algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author yeming.gao
@@ -310,4 +312,52 @@ public class SortAlgorithm {
         }
         return array;
     }
+
+    /**********************************************************************************************************/
+    /**
+     * 桶排序
+     * 桶排序中：无序数组有个要求,就是成员隶属于固定(有限的)的区间,如范围为0-9
+     *
+     * @param array      需要排序的int数组
+     * @param bucketSize 桶的大小
+     * @return 排序后的数组
+     */
+    public static ArrayList<int[]> bucketSort(int[] array, int bucketSize) {
+        //首先取出array数组中最大，最小的两个元素
+        int maxElement = array[0];
+        int minElement = array[0];
+        for (int anArray : array) {
+            if (anArray > maxElement) {
+                maxElement = anArray;
+            }
+            if (anArray < minElement) {
+                minElement = anArray;
+            }
+        }
+        //计算出桶的数量
+        int bucketCount = (maxElement - minElement) / bucketSize + 1;
+        //定义桶
+        List<List<Integer>> buckets = new ArrayList<>(bucketCount);
+        for (int i = 0; i < bucketCount; i++) {
+            buckets.add(new ArrayList<>());
+        }
+        //装载桶
+        for (int anArray : array) {
+            //根据值计算出所在的桶索引
+            int bucketIndex = anArray / bucketSize;
+            buckets.get(bucketIndex).add(anArray);
+        }
+        //对每个桶利用快排（其他方式排序也是可以的）进行排序
+        ArrayList<int[]> sortedList = new ArrayList<>(bucketCount);
+        for (List<Integer> bucket : buckets) {
+            int[] bucketArray = new int[bucket.size()];
+            for (int i = 0; i < bucket.size(); i++) {
+                bucketArray[i] = bucket.get(i);
+            }
+            sortedList.add(quickSort(bucketArray, 0, bucketArray.length - 1));
+        }
+
+        return sortedList;
+    }
+
 }
