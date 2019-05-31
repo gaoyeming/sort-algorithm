@@ -360,4 +360,51 @@ public class SortAlgorithm {
         return sortedList;
     }
 
+    /**********************************************************************************************************/
+    /**
+     * 基数排序
+     *
+     * @param array      需要排序的int数组
+     * @return 排序后的数组
+     */
+    public static int[] radixSort(int[] array) {
+        //先获取最大数
+        int maxElement = array[0];
+        for (int anArray : array) {
+            if (anArray > maxElement) {
+                maxElement = anArray;
+            }
+        }
+        //计算其对应的位数
+        int maxDigit = 0;
+        while (maxElement != 0) {
+            maxElement /= 10;
+            maxDigit++;
+        }
+        //定义长度为10的桶radix
+        List<List<Integer>> radixList = new ArrayList<>(10);
+        for (int i = 0; i < 10; i++) {
+            radixList.add(new ArrayList<>());
+        }
+        //从最低位开始取每个位组成radix数组；
+        int mod = 10, div = 1;
+        for(int i=0;i<maxDigit;i++){
+            for(int anArray : array){
+                int num = (anArray % mod) / div;
+                radixList.get(num).add(anArray);
+            }
+
+            int index = 0;
+            for (int j = 0; j < radixList.size(); j++) {
+                for (int k = 0; k < radixList.get(j).size(); k++) {
+                    array[index++] = radixList.get(j).get(k);
+                }
+                radixList.get(j).clear();
+            }
+            mod *= 10; div *= 10;
+        }
+
+        return array;
+    }
+
 }

@@ -63,12 +63,18 @@ public class MainTest {
 
         array = new int[] { 8, 0,  2, 18, 1, 7,  5, 13, 25, 6, 9, 3, 10, 29, 21, 11, 17, 23, 12, 14, 15, 16, 19, 4,
                 20, 34, 22, 32, 24, 27, 28, 30, 33, 26,  31};
-        System.out.print("桶 数排序结 果：");
+        System.out.print("桶 排序结 果：");
         for(int [] sortedArr:SortAlgorithm.bucketSort(array,5)){
             System.out.print(Arrays.toString(sortedArr));
         }
         long endTimeBucket = System.nanoTime();
         System.out.println(";耗时：" + (endTimeBucket - endTimeCounting));
+
+        array = new int[] { 8, 0,  2, 18, 1, 7,  5, 13, 25, 6, 9, 3, 10, 29, 21, 11, 17, 23, 12, 14, 15, 16, 19, 4,
+                20, 34, 22, 32, 24, 27, 28, 30, 33, 26,  31};
+        System.out.print("基数排序结果：" + Arrays.toString(SortAlgorithm.radixSort(array)));
+        long endTimeRadix = System.nanoTime();
+        System.out.println(";耗时：" + (endTimeRadix - endTimeCounting));
 
     }
 }
