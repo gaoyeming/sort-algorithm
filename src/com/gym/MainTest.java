@@ -2,7 +2,9 @@ package com.gym;
 
 import com.gym.sort.algorithm.SortAlgorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author yeming.gao
@@ -12,6 +14,14 @@ import java.util.Arrays;
 public class MainTest {
 
     public static void main(String[] args) {
+        List<List<Integer>> arrayList = new ArrayList<>(5);
+        for(int i=0;i<5;i++){
+            arrayList.add(new ArrayList<>());
+        }
+
+        arrayList.get(1).add(1);
+
+
         long startTime = System.nanoTime();
         int[] array = { 8, 0,  2, 18, 1, 7,  5, 13, 25, 6, 9, 3, 10, 29, 21, 11, 17, 23, 12, 14, 15, 16, 19, 4,
                 20, 34, 22, 32, 24, 27, 28, 30, 33, 26,  31};

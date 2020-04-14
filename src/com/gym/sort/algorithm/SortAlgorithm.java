@@ -45,6 +45,8 @@ public class SortAlgorithm {
                 if (array[j] < array[minIndex]) {
                     minIndex = j;
                 }
+            }
+            if (minIndex != i) {
                 int tmp = array[minIndex];
                 array[minIndex] = array[i];
                 array[i] = tmp;
